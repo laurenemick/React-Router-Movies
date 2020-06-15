@@ -6,7 +6,7 @@ import SavedList from './Movies/SavedList';
 import MovieList from './Movies/MovieList';
 import Movie from './Movies/Movie';
 
-const App = () => {
+const App = (props) => {
   const [savedList, setSavedList] = useState([]);
   const [movieList, setMovieList] = useState([]);
 
@@ -16,6 +16,7 @@ const App = () => {
         .get('http://localhost:5000/api/movies')
         .then(response => {
           setMovieList(response.data);
+          console.log(response.data)
         })
         .catch(error => {
           console.error('Server Error', error);
@@ -32,13 +33,13 @@ const App = () => {
     <div>
       <SavedList list={savedList} />
       <Switch>
-        <Route path="/movies/:itemId">
-          <Movie />
-        </Route>
+        <Route path="/movies/:id">
+            <Movie />
+          </Route>
 
-        <Route path="/movies">
-          <MovieList movies={movieList}/>
-        </Route>
+          <Route path="/">
+            <MovieList movies={movieList}/>
+          </Route>
       </Switch>
     </div>
   );
