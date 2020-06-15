@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const MovieList = props => {
   return (
@@ -13,10 +13,6 @@ const MovieList = props => {
 
 function MovieDetails({ movie }) {
   const { title, director, metascore, stars } = movie;
-
-  const { url, path } = useRouteMatch()
-  //console.log('url from the hook', url)
-  //console.log('path from the hook', path)
 
   return (
     <Link to={`/movies/${movie.id}`}>
